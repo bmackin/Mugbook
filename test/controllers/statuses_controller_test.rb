@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class StatusesControllerTest < ActionController::TestCase
+
   setup do
     @status = statuses(:one)
   end
@@ -18,19 +19,25 @@ class StatusesControllerTest < ActionController::TestCase
   end
 
   test "shoud render the new page when logged in" do
-      sign_in users(:james)
-      get :new
-      assert_response :success
-    end
+    sign_in users(:james)
+    get :new
+    assert_response :success
+  end
 
-  # end
+  test "should be logged in to post a status" do
+    post :create, status: { content: "Hello" }
+    assert_response :redirect
+    assert_redirected_to new_user_session_path
+  end
 
-  test "should create status" do
+  test "should create status when logged in" do
+    sign_in users(:james)
+
     assert_difference('Status.count') do
     post :create, status: { content: @status.content }
-    end
+  end
 
-    assert_redirected_to status_path(assigns(:status))
+  assert_redirected_to status_path(assigns(:status))
   end
 
   test "should show status" do
@@ -38,21 +45,36 @@ class StatusesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  # test "should get edit" do
-  #   get :edit, id: @status
-  #   assert_response :success
-  # end
+  test "should redirect edit when not logged in" do
+    get :edit, id: @status
+    assert_response :redirect
+    assert_redirected_to new_user_session_path
+  end
 
-  test "should update status" do
-    patch :update, id: @status, status: { content: @status.content }
+  test "should get edit when logged in" do
+    sign_in users(:james)
+    get :edit, id: @status
+    assert_response :success
+  end
+
+  test "should redirect status update when not logged in" do
+    put :update, id: @status, status: { content: @status.content }
+    assert_response :redirect
+    assert_redirected_to new_user_session_path
+  end
+
+  test "should update status when logged in" do
+    sign_in users(:james)
+    put :update, id: @status, status: { content: @status.content }
     assert_redirected_to status_path(assigns(:status))
   end
 
   test "should destroy status" do
     assert_difference('Status.count', -1) do
-      delete :destroy, id: @status
-    end
-
-    assert_redirected_to statuses_path
+    delete :destroy, id: @status
   end
+
+  assert_redirected_to statuses_path
+  end
+
 end
