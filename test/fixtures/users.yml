@@ -9,3 +9,9 @@ james:
   last_name: "Peach"
   email: "j@peach.com"
   profile_name: "jpeach"
+
+frankie:
+  first_name: "Frankie"
+  last_name: "LaBonte"
+  email: "f@labonte.com"
+  profile_name: "jflabonte"
