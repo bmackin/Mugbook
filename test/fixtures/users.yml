@@ -15,3 +15,9 @@ frankie:
   last_name: "LaBonte"
   email: "f@labonte.com"
   profile_name: "jflabonte"
+
+sawyer:
+  first_name: "Sawyer"
+  last_name: "Mackin"
+  email: "sawyer@mackin.com"
+  profile_name: "drlove"

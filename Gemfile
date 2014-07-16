@@ -9,6 +9,10 @@ gem 'rails', '4.1.4'
 gem 'devise'
 gem 'simple_form'
 
+group :test do 
+	gem 'shoulda'	
+end
+
 gem 'sqlite3'
 
 gem 'sass-rails', '~> 4.0.3'
