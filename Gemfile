@@ -9,9 +9,7 @@ gem 'rails', '4.1.4'
 gem 'devise'
 gem 'simple_form'
 
-group :development, :test
-	gem 'sqlite3'
-end
+gem 'pg'
 
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
