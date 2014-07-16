@@ -30,6 +30,8 @@ gem 'spring',        group: :development
 
 gem 'protected_attributes'
 
+gem 'gravatar_image_tag'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
